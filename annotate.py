@@ -21,7 +21,7 @@ def annotate_wrinkle(img):
             x, y = p[0]
             poly.append([int(x), int(y)])
 
-        annotations.append({"polyline": poly})
+        annotations.append({"segmentation": poly})
 
     return annotations
 
@@ -30,7 +30,7 @@ def overlay_annotations(img, annotations):
     img_draw = img.copy()
 
     for ann in annotations:
-        pts = np.array(ann["polyline"], dtype=np.int32)
+        pts = np.array(ann["segmentation"], dtype=np.int32)
         cv2.polylines(img_draw, [pts], False, (0, 255, 0), 2)
 
     return img_draw
